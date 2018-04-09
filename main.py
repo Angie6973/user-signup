@@ -1,22 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-    </style>
-        .error {color:red;}
-     </style>
-</head>
-<body>
-    <h1>Signup</h1>
-        <form method="post">
-        <table>
-            <tbody>
-            </tbody>
-        </table>
-        <input type="submit">
-        </form>
-</body>
+from flask import Flask, request, redirect
+import cgi
+import os
+import jinja2
 
+template_dir= os.path.join(os.path.dirname(__file__), 'templates')
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape=True)
 
+app= Flask(__name__)
+app.config['DEBUG'] = True
 
-</html>
+@app.route("/")
+def index():  
+    template = jinja_env.get_template('user_signup.html')
+    return template.render()
+
+@app.route("/welcome", methods= ['POST'])
+def welcome():
+    username=request.form['username']
+    template = jinja_env.get_template('welcome.html')
+    return template.render(username=username)
+
+app.run()
