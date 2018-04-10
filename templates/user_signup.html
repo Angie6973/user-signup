@@ -2,12 +2,12 @@
 <html>
 <head>
     <style type="text">
-        .error {color:red;}
+        .error{color:red;}
      </style>
 </head>
 <body>
     <h1>Signup</h1>
-        <form action="/welcome" method="post">
+    <form  action="/signup" method="post">   
         <table>
             <tr>
                 <td class="label">
@@ -36,7 +36,7 @@
                     Verify Password
                 </td>
                 <td>
-                    <input type="password" name="verifypassword" value="">
+                    <input type="password" name="verify" value="">
                 </td>
                 <td class="error">
                     {{error_verify}}
